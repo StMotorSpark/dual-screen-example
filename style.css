@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
+}
+
+/*
+desktop layout
+*/
+.App {
+  display: grid;
+  grid-template-columns: 10vw 67vw 20vw;
+  grid-template-rows: 5vh 60vh 33vh;
+  grid-template-areas:
+    "header header header"
+    "stories content related"
+    "stories content .";
+  column-gap: 1vw;
+  row-gap: 1vh;
+}
+
+/*
+  phone layout portrait
+  */
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  .App {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 10vh 10vh auto 10vh;
+    grid-template-areas:
+      "header"
+      "stories"
+      "content"
+      "related";
+    column-gap: 1vw;
+    row-gap: 1vh;
+  }
+}
+
+/*
+  tablet layout portrait
+  */
+@media screen and (min-device-width: 480px) and (max-device-width: 1200px) and (orientation: portrait) {
+  .App {
+    display: grid;
+    grid-template-columns: 25vw auto;
+    grid-template-rows: 10vh 80vh 8vh;
+    grid-template-areas:
+      "header header"
+      "stories content"
+      "stories related";
+    column-gap: 1vw;
+    row-gap: 1vh;
+    font-size: 2.4vh;
+  }
+}
+
+/*
+  dual screen layout landscape
+  */
+@media (spanning: single-fold-vertical) {
+  .App {
+    display: grid;
+    grid-template-columns: calc(env(fold-left) - 1vw) env(fold-width) calc(
+        100vw - env(fold-left) - env(fold-width) - 1vw
+      );
+    grid-template-rows: 5vh 60vh 33vh;
+    grid-template-areas:
+      "header header header"
+      "stories . content"
+      "related . content";
+    column-gap: 1vw;
+    row-gap: 1vh;
+  }
+}
+
+/*
+  dual screen layout portrait
+  */
+@media (spanning: single-fold-horizontal) {
+  .App {
+    display: grid;
+    grid-template-columns: 60vw 39vw;
+    grid-template-rows:
+      9vh
+      calc(env(fold-top) - 10vh - 2vh)
+      env(fold-height)
+      calc(99vh - env(fold-top) - env(fold-height) - 2vh);
+    grid-template-areas:
+      "header header"
+      "stories related"
+      ". ."
+      "content content";
+    column-gap: 1vw;
+    row-gap: 1vh;
+  }
+}
+
+/*
+  component styls
+  */
+.header {
+  grid-area: header;
+  background-color: lime;
+}
+
+.stories {
+  grid-area: stories;
+  background-color: maroon;
+}
+
+.content {
+  grid-area: content;
+  background-color: mediumorchid;
+  overflow-y: auto;
+  min-height: 50vh;
+}
+
+.related {
+  grid-area: related;
+  background-color: mediumslateblue;
+}
